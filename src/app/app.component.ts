@@ -13,6 +13,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +23,8 @@ import { MatSelectModule } from '@angular/material/select';
     CommonModule,
     ReactiveFormsModule,
     RouterOutlet,
+    MatButtonModule,
+    MatCardModule,
     MatFormFieldModule,
     MatInputModule,
     MatGridListModule,
@@ -28,20 +32,17 @@ import { MatSelectModule } from '@angular/material/select';
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-
-
 })
 export class AppComponent implements OnInit {
-
   constructor(private readonly fb: FormBuilder) {}
   public form!: FormGroup;
 
-  public movements: Movements[] = ([
-    {value: 'benchPress', viewValue: 'Bench Press'},
-    {value: 'deadLift', viewValue: 'Dead Lift'},
-    {value: 'backSquat', viewValue: 'Back Squat'},
-    {value: 'overheadPress', viewValue: 'Overhead Press'},
-    ]);
+  public movements: Movements[] = [
+    { value: 'benchPress', viewValue: 'Bench Press' },
+    { value: 'deadLift', viewValue: 'Dead Lift' },
+    { value: 'backSquat', viewValue: 'Back Squat' },
+    { value: 'overheadPress', viewValue: 'Overhead Press' },
+  ];
 
   public reps = new FormControl(0);
 
@@ -65,7 +66,7 @@ export class AppComponent implements OnInit {
 
     this.form.valueChanges.subscribe(() => {
       const total = this.calculateTotal(this.form);
-      this.form.patchValue({ total: total });
+      this.form.patchValue({ total }, { emitEvent: false });
     });
   }
 
@@ -75,6 +76,10 @@ export class AppComponent implements OnInit {
     const weight = form.get('weight')?.value;
 
     return reps * sets * weight;
+  }
+
+  public onSave(): void {
+    console.log('form is', this.form);
   }
 }
 

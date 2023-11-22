@@ -4969,6 +4969,7 @@ export {
   removeAriaReferencedId,
   ActiveDescendantKeyManager,
   LiveAnnouncer,
+  FocusMonitor,
   Directionality,
   BidiModule,
   VERSION2 as VERSION,
@@ -5013,4 +5014,4 @@ export {
   MatOptionModule,
   MatRippleLoader
 };
-//# sourceMappingURL=chunk-LHOFCWAJ.js.map
+//# sourceMappingURL=chunk-OWWYQD7G.js.map

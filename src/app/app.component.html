@@ -1,72 +1,82 @@
-<mat-grid-list cols="6" rowHeight="100px">
-  <mat-grid-tile>
-    <Title>Test</Title>
-  </mat-grid-tile>
+<mat-card>
+  <mat-card-header>
+    <h1>Record Movement Here</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="form">
+      <mat-form-field class="form-field_full-width" appearance="outline">
+        <mat-label>Movement</mat-label>
+        <mat-select>
+          @for (movement of movements; track movement) {
+          <mat-option [value]="movement.value">{{
+            movement.viewValue
+          }}</mat-option>
+          }</mat-select
+        >
+      </mat-form-field>
 
-  <form [formGroup]="form">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Reps</mat-label>
+        <input
+          formControlName="reps"
+          type="number"
+          matInput
+          placeholder="0"
+          value="{{ reps.value }}"
+        />
+      </mat-form-field>
 
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Sets</mat-label>
+        <input
+          formControlName="sets"
+          type="number"
+          matInput
+          placeholder="0"
+          value="{{ sets.value }}"
+        />
+      </mat-form-field>
 
-    <mat-form-field class="form-field" appearance="outline">
-      <mat-label>Movement</mat-label>
-      <mat-select>
-        @for (movement of movements; track movement) {
-        <mat-option [value]="movement.value">{{movement.viewValue}}</mat-option>
-      }</mat-select>
-    </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Weight</mat-label>
+        <input
+          formControlName="weight"
+          type="number"
+          matInput
+          placeholder="0"
+          value="{{ weight.value }}"
+        />
+      </mat-form-field>
 
-    <mat-form-field class="form-field" appearance="outline">
-      <mat-label>Reps</mat-label>
-      <input
-        formControlName="reps"
-        type="number"
-        matInput
-        placeholder="0"
-        value="{{ reps.value }}"
-      />
-    </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Total</mat-label>
+        <input
+          formControlName="total"
+          type="number"
+          matInput
+          value="{{ total.value }}"
+          [disabled]="true"
+        />
+      </mat-form-field>
 
-    <mat-form-field class="form-field" appearance="outline">
-      <mat-label>Sets</mat-label>
-      <input
-        formControlName="sets"
-        type="number"
-        matInput
-        placeholder="0"
-        value="{{ sets.value }}"
-      />
-    </mat-form-field>
-
-    <mat-form-field class="form-field" appearance="outline">
-      <mat-label>Weight</mat-label>
-      <input
-        formControlName="weight"
-        type="number"
-        matInput
-        placeholder="0"
-        value="{{ weight.value }}"
-      />
-    </mat-form-field>
-
-    <mat-form-field class="form-field" appearance="outline">
-      <mat-label>Total</mat-label>
-      <input
-        formControlName="total"
-        type="number"
-        matInput
-        value="{{ total.value }}"
-        [disabled]="true"
-      />
-    </mat-form-field>
-
-    <mat-form-field class="form-field" appearance="outline">
-      <!-- TODO: Change Effort to dynamic label - either RIR or RPE -->
-      <mat-label>Effort</mat-label>
-      <input
-        formControlName="rpe"
-        type="number"
-        matInput
-        value="{{ effort.value }}"
-      />
-    </mat-form-field>
-  </form>
-</mat-grid-list>
+      <mat-form-field class="form-field" appearance="outline">
+        <!-- TODO: Change Effort to dynamic label - either RIR or RPE -->
+        <mat-label>Effort</mat-label>
+        <input
+          formControlName="effort"
+          type="number"
+          matInput
+          value="{{ effort.value }}"
+        />
+      </mat-form-field>
+    </form>
+    <mat-card-footer>
+      <div class="button-row">
+        <button mat-raised-button>Cancel</button>
+        <button mat-raised-button color="primary" (click)="onSave()">
+          Save
+        </button>
+      </div>
+    </mat-card-footer>
+  </mat-card-content>
+</mat-card>
